@@ -1,52 +1,106 @@
 'use strict';
 
-describe('Controller: minesweeper', function () {
+angular.module('Minesweeper')
 
-  beforeEach(module('Minesweeper'));
-  beforeEach(module('underscore'));
+.controller('minesweeper', function ($scope) {
 
-  var controller;
-  var scope;
+  $scope.controller_loaded = 'Minesweeper loaded!';
 
-  beforeEach(inject(function ($rootScope, $controller) {
-    scope = $rootScope.$new();
-    controller = $controller('minesweeper', { $scope: scope });
-  }));
+	var matriz = new Array(3);
+        matriz[0]=new Array(3); 
+        matriz[1]=new Array(3);
+        matriz[2]=new Array(3);
 
-  describe('On instance', function () {
-    it('should set "controller_loaded" variable in scope', function () {
-      expect(scope.controller_loaded).toContain('loaded');
-    });
+       
+
+    matriz[0][0] = '*';
+    matriz[2][1] = '*';
+
+
+
+	for (var i = 0 ; i < 3; i++) {
+		for (var j = 0 ; j < 3; j++) {
+			//llenado por defecto las celdas que no son minas
+			if(matriz[i][j]!=='*')
+			{
+				matriz[i][j]=0;
+			}
+			//llenar siguientes con valor 1 en flas
+			if(matriz[i][j-1] === '*')
+			{
+				if(matriz[i][j]!=='*')
+				{
+					matriz[i][j]=1;
+				}
+			}
+
+			//llenar anteriores con valor  n filas
+			if(matriz[i][j+1] === '*' && j < 2)
+			{
+				if(matriz[i][j]!=='*')
+				{
+					//si hay valor se lo suma
+					if(matriz[i][j]!==null && matriz[i][j]!=='*')
+					{
+						matriz[i][j]+=matriz[i][j];
+					}
+					matriz[i][j]=1;
+				}
+			}
+		}
+	}
+
+
+	for (var ii = 0 ; ii < 3; ii++) {
+		for (var jj = 0 ; jj < 3; jj++) {
+			//llenar anteriores con valor  n cols
+			if(ii > 0){
+				if(matriz[ii-1][jj] === '*' )
+				{
+					if(matriz[ii][jj]!=='*')
+					{
+						//si hay valor se lo suma
+						if(matriz[ii][jj]!==null && matriz[ii][jj]!=='*')
+						{
+							matriz[ii][jj]+=matriz[ii][jj];
+						}
+						matriz[ii][jj]=1;
+					}
+				}
+			}
+		}
+	}
+	console.log(matriz);
+
+	$scope.controller_matriz = matriz;
+
+	
+
+	$scope.getNumber= function (i, j) {
+
+
+//i = 0;
+//j=0;
+//matriz[i][j]=0;
+
+		return matriz[i][j];
+
+
+	};
+
+
+
+
+
+})
+
+
+
+
+.config(function ($routeProvider) {
+  $routeProvider
+  .when('/minesweeper', {
+    templateUrl: 'scripts/mines/views/minesweeper.html',
+    controller: 'minesweeper'
   });
-
-  describe('when going to /minesweeper', function () {
-
-    var route, location, rootScope, httpBackend;
-
-    beforeEach(inject(function ($route, $location, $rootScope, $httpBackend) {
-      route = $route;
-      location = $location;
-      rootScope = $rootScope;
-      httpBackend = $httpBackend;
-
-      httpBackend.when('GET', 'scripts/mines/views/minesweeper.html').respond('<div></div>');
-    }));
-
-    afterEach(function () {
-      httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
-    });
-
-    it('should use minesweeper.html and controller', function () {
-      expect(route.current).toBeUndefined();
-
-      location.path('/minesweeper');
-
-      httpBackend.flush();
-
-      expect(route.current.templateUrl).toBe('scripts/mines/views/minesweeper.html');
-      expect(route.current.controller).toBe('minesweeper');
-    });
-  });
-
 });
