@@ -38,19 +38,31 @@ describe('Controller: minesweeper', function () {
 
   describe('On instance', function () {
     it('la posición selecccionada no tiene una mina "*"', function () {
-      expect(scope.getNumber(0,1)).toBe(1);
+      expect(scope.getSorrundingMines(0,1)).toBe(1);
     });
   });
 
   describe('On instance', function () {
     it('la posición selecccionada retorna el número de minas alrededor', function () {
-      expect(scope.getNumber(0,2)).toBe(0);
+      expect(scope.getSorrundingMines(0,2)).toBe(0);
     });
   });
 
   describe('On instance', function () {
     it('la posición selecccionada retorna 2', function () {
-      //expect(scope.getNumber(1,0)).toBe(2);
+      expect(scope.getSorrundingMines(1,0)).toBe(2);
+    });
+  });
+
+  describe('On instance', function () {
+    it('la posición selecccionada es una mina', function () {
+      expect(scope.isMine(0,0)).toBe(true);
+    });
+  });
+
+  describe('On instance', function () {
+    it('la posición selecccionada no es una mina', function () {
+      expect(scope.isMine(1,0)).toBe(false);
     });
   });
 
