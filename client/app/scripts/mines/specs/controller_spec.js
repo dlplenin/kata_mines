@@ -23,14 +23,12 @@ describe('Controller: minesweeper', function () {
 /*Diego*/
   describe('On instance', function () {
     it('debe existir una matriz 3x3', function () {
-      //console.log(scope.controller_matriz.length);
       expect(scope.controller_matriz.length).toBe(3);
     });
   });
 
   describe('On instance', function () {
     it('la matriz 3x3 debe contener 2 minas "*"', function () {
-      //console.log(scope.controller_matriz[0]);
       expect(scope.controller_matriz[0][0]).toBe('*');
       expect(scope.controller_matriz[2][1]).toBe('*');
     });
@@ -38,19 +36,19 @@ describe('Controller: minesweeper', function () {
 
   describe('On instance', function () {
     it('la posición selecccionada no tiene una mina "*"', function () {
-      expect(scope.getSorrundingMines(0,1)).toBe(1);
+      expect(scope.getSurroundingMines(0,1)).toBe(1);
     });
   });
 
   describe('On instance', function () {
     it('la posición selecccionada retorna el número de minas alrededor', function () {
-      expect(scope.getSorrundingMines(0,2)).toBe(0);
+      expect(scope.getSurroundingMines(0,2)).toBe(0);
     });
   });
 
   describe('On instance', function () {
     it('la posición selecccionada retorna 2', function () {
-      expect(scope.getSorrundingMines(1,0)).toBe(2);
+      expect(scope.getSurroundingMines(1,0)).toBe(2);
     });
   });
 
@@ -65,7 +63,6 @@ describe('Controller: minesweeper', function () {
       expect(scope.isMine(1,0)).toBe(false);
     });
   });
-
 
 /*Diego*/
 
