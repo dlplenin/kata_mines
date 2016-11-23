@@ -1,3 +1,4 @@
+
 Kata Idukay - Cuestionarix
 ===================
 
@@ -71,3 +72,5 @@ Express server listening on port 3000
 **Diego 2
 C:\Users\Diego\Documents\Github\kata_mines\client>grunt -f
 
+=======
+Kata Idukay - Cuestionarix

@@ -1,2 +1,3 @@
 ### Katas
 $ Minesweeper
+
