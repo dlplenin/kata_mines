@@ -5,12 +5,11 @@ describe('Controller: minesweeper', function () {
   beforeEach(module('Minesweeper'));
   beforeEach(module('underscore'));
 
-  var controller;
   var scope;
 
   beforeEach(inject(function ($rootScope, $controller) {
     scope = $rootScope.$new();
-    controller = $controller('minesweeper', { $scope: scope });
+    $controller('minesweeper', { $scope: scope });
   }));
 
   describe('On instance', function () {
