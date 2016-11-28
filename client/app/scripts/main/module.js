@@ -2,7 +2,8 @@
 
 angular.module('App', [
   'ngRoute',
-  'Minesweeper'
+  'Minesweeper',
+  'FizzBuzz'
 ])
 .config(function ($routeProvider) {
   $routeProvider

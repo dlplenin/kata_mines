@@ -1,0 +1,60 @@
+<h3>Kata FizzBuzz</h3>
+<br>
+<div ng-controller="fizzbuzz">
+
+	<input type="type" ng-model="count" class="text_number" />
+
+	<button ng-click="addDiv(count)"  class="buttons">
+			#
+	</button>		
+	<button ng-click="addDiv('Fizz')" class="buttons">
+			FIZZ
+	</button>	
+	<button ng-click="addDiv('Buzz')" class="buttons">
+			BUZZ
+	</button>
+	<button ng-click="addDiv('Fizz-Buzz')" class="buttons">
+			FIZZ-BUZZ
+	</button>				
+
+	<br style="clear: both;"/>
+
+	<div  ng-repeat="div in div_array" style="max-width: 860px">
+		<div style="float: left;border: darkgray 1px solid;min-width: 80px; text-align: center; margin: 2px;">
+	 		{{div.current_value}}	{{div.ok}}
+	  	</div>
+	</div>
+
+	<br style="clear: both;"/>
+
+	<button ng-click="showCheat=!showCheat">Cheat</button>
+	<br/>
+	<div ng-show="showCheat" style="max-width: 860px">
+	 	<div ng-repeat="number in game_array track by $index" style="float: left;border: darkgray 1px solid;min-width: 80px;    text-align: center; margin: 2px;">
+	 		{{number}}
+	  	</div>
+	</div>
+
+</div>
+
+<br style="clear: both;"/>
+
+<a href="#/" class="kataFont" >Home</a>
+
+<style type="text/css">
+	
+	.text_number{
+		font-size: x-large;
+	    /* width: 100px; */
+	    height: 41px;
+	    padding-top: 0px;
+	    padding-bottom: 5px;
+	    text-align: center;
+	}
+
+	.buttons{
+		width: 100px;
+		height: 50px;
+		margin: 5px;
+	}
+</style>
