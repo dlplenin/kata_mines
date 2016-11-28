@@ -7,27 +7,36 @@ angular.module('FizzBuzz')
 	$scope.controller_loaded = 'FizzBuzz loaded!';
 	$scope.controller_limit = 100;
 	$scope.showCheat = false;
-	$scope.FizzBuzz_evaluation = function(number) {
-		var fizz_value = (number%3?'':'Fizz');
-		return (fizz_value + (fizz_value?(number%5?'':'-Buzz'):(number%5?'':'Buzz')))||number;
+	$scope.game_array = _(1).chain()
+	.range($scope.controller_limit + 1)
+	.map(function(number){
+ 		return FizzBuzz_evaluation(number);
+ 	})
+	.value();
+
+	$scope.stack_option_response = [];
+	$scope.game_count=1;
+	$scope.check_value_option = function(option){
+		$scope.stack_option_response.push({
+			is_correct: option===FizzBuzz_evaluation($scope.game_count),
+			selected_option: typeof option === 'number'?'#':option,
+			current_value: $scope.game_count
+		});
+		$scope.game_count++;
 	};
-	var game_array = _(_.range(1, $scope.controller_limit + 1))
-		.map(function(number){
- 			return $scope.FizzBuzz_evaluation(number);
- 	});
-	$scope.game_array = game_array;
 
-
-	$scope.div_array = [];
-	$scope.count = 1;
-	$scope.addDiv = function(option) {
-    	var current_div = {
-      		ok: option===$scope.FizzBuzz_evaluation($scope.count)?'Acierto':'Error',    		
-      		current_value: $scope.count++
-    	}
-    	$scope.div_array.push(current_div);
+	function FizzBuzz_evaluation(number) {
+		var responses = []; 
+		if(!(number%3))
+		{
+			responses.push('Fizz');
+		}
+		if(!(number%5))
+		{
+			responses.push('Buzz');
+		}				
+		return responses.join('-')||number;		
 	}
-
 })
 
 .config(function($routeProvider) {

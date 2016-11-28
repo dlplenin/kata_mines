@@ -51,39 +51,96 @@ describe('Controller: fizzbuzz', function () {
 
   /*Diego*/
   describe('On instance', function () {
-    iit('debe existir un límite para el juego', function () {
-      expect(scope.controller_limit).not.toBeUndefined();
+    it('debe existir un límite para el juego', function () {
+       expect(typeof scope.controller_limit).toBe('number');
     });
-  });
 
-  describe('On instance', function () {
-    iit('el número 1 debe retornar 1', function () {
-      expect(scope.FizzBuzz_evaluation(1)).toBe(1);
+    it('el índice 0 de game_array debe retornar el número enviado', function () {
+      expect(scope.game_array[0]).toBe(1);
+      expect(scope.game_array[1]).toBe(2);
     });
-  });
 
-  describe('On instance', function () {
-    iit('el número 3 debe retornar Fizz', function () {
-      expect(scope.FizzBuzz_evaluation(3)).toBe('Fizz');
+    it('el índice 2 de game_array debe retornar la palabra Fizz', function () {
+      expect(scope.game_array[2]).toBe('Fizz');
     });
-  });
 
-  describe('On instance', function () {
-    iit('el número 3 debe retornar Fizz', function () {
-      expect(scope.FizzBuzz_evaluation(5)).toBe('Buzz');
+    it('el índice 4 de game_array retornar la palabra Buzz', function () {
+      expect(scope.game_array[4]).toBe('Buzz');
     });
-  });
 
-  describe('On instance', function () {
-    iit('el número 3 debe retornar Fizz', function () {
-      expect(scope.FizzBuzz_evaluation(15)).toBe('Fizz-Buzz');
+    it('el índice 14 de game_array retornar la palabra Fizz-Buzz', function () {
+      expect(scope.game_array[14]).toBe('Fizz-Buzz');
     });
-  });  
 
-  describe('On instance', function () {
-    iit('el array resultante debe ser de igual tamaño al límite', function () {
+    it('el array resultante debe ser de igual tamaño al límite', function () {
       expect(scope.game_array.length).toBe(scope.controller_limit);
     });
-  }); 
 
+    it('necesito almacenar la respuesta del juego al seleccionar una opción', function () {
+      expect(scope.stack_option_response).toEqual([]);
+    });
+
+    it('necesto un contador para incrementar con paso de 1', function () {
+      expect(scope.game_count).toBe(1);
+    });
+  });
+
+    describe('When user clic any button', function () {
+     it('Should increment scope.game_count 1 step ', function () {
+       scope.game_count = 4;
+       scope.check_value_option();
+       expect(scope.game_count).toBe(5);
+      });      
+
+     it('Should add in stack_option_response an object with the response for a number option', function () {
+       scope.stack_option_response = [];
+       scope.game_count = 1;
+       scope.check_value_option(1);
+       expect(scope.stack_option_response[0].is_correct).toBe(true);
+       expect(scope.stack_option_response[0].current_value).toBe(1);
+       expect(scope.stack_option_response[0].selected_option).toBe('#');
+
+       scope.stack_option_response = [];
+       scope.game_count = 2;
+       scope.check_value_option(2);
+       expect(scope.stack_option_response[0].is_correct).toBe(true);
+       expect(scope.stack_option_response[0].current_value).toBe(2);
+       expect(scope.stack_option_response[0].selected_option).toBe('#');
+      });
+
+     it('Should add in stack_option_response an object with the response for a Fizz option', function () {
+       scope.stack_option_response = [];
+       scope.game_count = 3;
+       scope.check_value_option('Fizz');
+       expect(scope.stack_option_response[0].is_correct).toBe(true);
+       expect(scope.stack_option_response[0].current_value).toBe(3);
+       expect(scope.stack_option_response[0].selected_option).toBe('Fizz');
+      });
+
+     it('Should add in stack_option_response an object with the response for a Buzz option', function () {
+       scope.stack_option_response = [];
+       scope.game_count = 3;
+       scope.check_value_option('Buzz');
+       expect(scope.stack_option_response[0].is_correct).toBe(false);
+       expect(scope.stack_option_response[0].current_value).toBe(3);
+       expect(scope.stack_option_response[0].selected_option).toBe('Buzz');
+
+       scope.stack_option_response = [];
+       scope.game_count = 5;
+       scope.check_value_option('Buzz');
+       expect(scope.stack_option_response[0].is_correct).toBe(true);
+       expect(scope.stack_option_response[0].current_value).toBe(5);
+       expect(scope.stack_option_response[0].selected_option).toBe('Buzz');
+      });
+
+    it('Should add in stack_option_response an object with the response for a Fizz-Buzz option', function () {
+       scope.stack_option_response = [];
+       scope.game_count = 15;
+       scope.check_value_option('Fizz-Buzz');
+       expect(scope.stack_option_response[0].is_correct).toBe(true);
+       expect(scope.stack_option_response[0].current_value).toBe(15);
+       expect(scope.stack_option_response[0].selected_option).toBe('Fizz-Buzz');
+      });
+
+    });
 });

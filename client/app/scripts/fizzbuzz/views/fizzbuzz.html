@@ -2,35 +2,47 @@
 <br>
 <div ng-controller="fizzbuzz">
 
-	<input type="type" ng-model="count" class="text_number" />
+	<input type="type" class="form-control text_number" ng-model="game_count" readonly="readonly" />
 
-	<button ng-click="addDiv(count)"  class="buttons">
+	<button ng-click="check_value_option(game_count)"  class="btn btn-primary buttons">
 			#
 	</button>		
-	<button ng-click="addDiv('Fizz')" class="buttons">
+	<button ng-click="check_value_option('Fizz')" class="btn btn-primary buttons">
 			FIZZ
 	</button>	
-	<button ng-click="addDiv('Buzz')" class="buttons">
+	<button ng-click="check_value_option('Buzz')" class="btn btn-primary buttons">
 			BUZZ
 	</button>
-	<button ng-click="addDiv('Fizz-Buzz')" class="buttons">
+	<button ng-click="check_value_option('Fizz-Buzz')" class="btn btn-primary buttons">
 			FIZZ-BUZZ
 	</button>				
 
 	<br style="clear: both;"/>
 
-	<div  ng-repeat="div in div_array" style="max-width: 860px">
-		<div style="float: left;border: darkgray 1px solid;min-width: 80px; text-align: center; margin: 2px;">
-	 		{{div.current_value}}	{{div.ok}}
+	<!--<div  ng-repeat="response in stack_option_response" style="max-width: 860px">
+		<div class="div_responses" ng-class="{'fa fa-exclamation-triangle': response.is_correct == false}">
+	 		{{response.current_value}} {{!response.is_correct ? response.selected_option:'' }}
 	  	</div>
+	</div>-->
+
+	<div style="max-width: 860px;margin:5px;">
+		<div ng-repeat="response in stack_option_response" ng-class="response.is_correct?'has-success':'has-error'" class="form-group has-feedback div_responses_bootstrap" >  
+				<div class="form-control">
+					{{response.current_value}} {{!response.is_correct ? response.selected_option:'' }}
+				</div>
+				<span ng-if="response.is_correct" class="glyphicon glyphicon-ok form-control-feedback"></span>
+				<span ng-if="!response.is_correct" class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</div>
 	</div>
 
+
+	<br style="clear: both;"/>
 	<br style="clear: both;"/>
 
 	<button ng-click="showCheat=!showCheat">Cheat</button>
-	<br/>
+	<br style="clear: both;"/>
 	<div ng-show="showCheat" style="max-width: 860px">
-	 	<div ng-repeat="number in game_array track by $index" style="float: left;border: darkgray 1px solid;min-width: 80px;    text-align: center; margin: 2px;">
+	 	<div ng-repeat="number in game_array track by $index" class="div_responses">
 	 		{{number}}
 	  	</div>
 	</div>
@@ -45,16 +57,33 @@
 	
 	.text_number{
 		font-size: x-large;
-	    /* width: 100px; */
-	    height: 41px;
-	    padding-top: 0px;
-	    padding-bottom: 5px;
-	    text-align: center;
+		max-width: 150px;
+		height: 51px;
+		padding-top: 6px;
+		padding-bottom: 5px;
+		text-align: center;
+		float: left;
+		margin-top: 5px;
+		margin-left: 5px;
 	}
 
 	.buttons{
 		width: 100px;
 		height: 50px;
 		margin: 5px;
+	}
+
+	.div_responses{
+		float: left;
+		border: darkgray 1px solid;
+		min-width: 80px;    
+		text-align: center; 
+		margin: 2px;		
+	}
+	.div_responses_bootstrap{
+		width: 140px;
+		float: left;
+		margin-right: 2px;
+		margin-bottom: 3px;
 	}
 </style>
