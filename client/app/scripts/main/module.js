@@ -3,7 +3,8 @@
 angular.module('App', [
   'ngRoute',
   'Minesweeper',
-  'FizzBuzz'
+  'FizzBuzz',
+  'GameOfLife'
 ])
 .config(function ($routeProvider) {
   $routeProvider
