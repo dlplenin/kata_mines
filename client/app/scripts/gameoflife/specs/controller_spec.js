@@ -52,14 +52,16 @@ describe('Controller: gameoflife', function () {
     /*Diego*/
     describe('On instance', function () {
         it('must have a limit to the board', function () {
-            expect(typeof scope.controller_size).toBe('number');
+            expect(typeof scope.board_size).toBe('number');
         });
 
         it('must exist an array with 1 and 0 numbers in random positions', function () {
-            scope.game_board[0]=0;
-            scope.game_board[1]=1;
-            expect(scope.game_board[0]).toBe(0);
-            expect(scope.game_board[1]).toBe(1);
+            expect(scope.game_board[0][0]).toBeLessThan(2);
+            expect(scope.game_board[0][0]).toBeGreaterThan(-1);
+
+            expect(scope.game_board[0][1]).toBeLessThan(2);
+            expect(scope.game_board[0][1]).toBeGreaterThan(-1);
+            
         });     
 
     });
@@ -67,10 +69,10 @@ describe('Controller: gameoflife', function () {
     describe('When user clic Play button', function () {
        
         it('should KILL current Cell if it has fewer than two live neighbours (by under-population)', function () {
-            scope.game_board=[0,1,0,0,1,0,0,1,0];
-            //scope.game_board[1]=0;
+            scope.game_board=[[0, 1, 0], [0, 2, 0], [0, 3, 0]];
+            //scope.game_board[0][1]=0;
             scope.run_next_generation();
-            expect(scope.game_board[1]).toBe(0);
+            expect(scope.game_board[0][1]).toBe(0);
         });
 
         it('should STAY ALIVE current Cell if it is alive and has two or three live neighbours ', function () {
