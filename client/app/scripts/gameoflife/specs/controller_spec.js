@@ -68,20 +68,53 @@ describe('Controller: gameoflife', function () {
 
     describe('When user clic Play button', function () {
        
+
         it('should KILL current Cell if it has fewer than two live neighbours (by under-population)', function () {
-            scope.game_board=[[0, 1, 0], [0, 2, 0], [0, 3, 0]];
-            //scope.game_board[0][1]=0;
-            scope.run_next_generation();
+            scope.game_board = [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ];
+            scope.run_next_generation(0,1);
             expect(scope.game_board[0][1]).toBe(0);
         });
 
-        it('should STAY ALIVE current Cell if it is alive and has two or three live neighbours ', function () {
-
+        it('should KILL current Cell if it has fewer than two live neighbours (by under-population)', function () {
+            scope.game_board = [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ];
+            scope.run_next_generation(1,0);
+            expect(scope.game_board[1][0]).toBe(1);
         });
 
-        it('should STAY ALIVE current Cell if it has two or three live neighbours (by over-population) ', function () {
+        it('should KILL current Cell if it has more than three live neighbours (by over-population) ', function () {
+            scope.game_board = [
+                [0, 1, 0],
+                [1, 1, 0],
+                [1, 1, 0]
+            ];
+            scope.run_next_generation(1,1);
+            expect(scope.game_board[1][1]).toBe(0);            
+        });     
+        
+        iit('should Any live cell with two or three live neighbours lives on to the next generation. ', function () {
+            scope.game_board = [
+                [0, 1, 0],
+                [0, 1, 1],
+                [1, 1, 1]
+            ];
 
-        });        
+            scope.original_game_board = [
+                [0, 1, 0],
+                [0, 1, 1],
+                [1, 1, 1]
+            ];
+            scope.run_next_generation(0, 1);
+            expect(scope.game_board[0][1]).toBe(1);
+        }); 
+
 
         it('should become a LIVE current Cell if it has exactly three live neighbours (by reproduction) ', function () {
 
