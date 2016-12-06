@@ -3,6 +3,53 @@
 <div ng-controller="gameoflife">
 
 
+
+<style type="text/css">
+.myTable { margin: 10px;}
+.myTable td { padding:1px;border:1px solid #000;width:24px;text-align: center;}
+</style>
+
+
+
+<!-- $('.fa-hospital-o').fadeOut(500, function(){ $(this).remove();}); -->
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4" >
+     <input type="type" class="form-control" ng-model="board_size"/>
+    </div>
+    <div class="col-sm-3">
+		<button ng-click="build_board(board_size)"  class="btn btn-primary buttons">
+				<i class="fa fa-random" aria-hidden="true"></i>
+		</button>    
+    </div>  
+    <div class="col-sm-3">
+		<button ng-click="build_board_pattern('blinker')"  class="btn btn-primary buttons">
+				<i class="fa fa-random" aria-hidden="true"></i>
+		</button>    
+    </div>
+    <div class="col-sm-3">
+		<button ng-click="run_next_generation()"  class="btn btn-primary buttons">
+				<i class="fa fa-step-forward" aria-hidden="true"></i>
+		</button>    
+    </div>
+  </div>
+</div>
+
+
+
+
+	  	<table class="myTable" >
+	  		<tr ng-repeat="firtsArray in game_board  track by $index">
+	  			<td ng-repeat="surroundingValue in firtsArray track by $index" 
+	  				>
+						{{surroundingValue}}
+	  			</td>
+	  		</tr>
+	  	</table>
+
 </div>
 
 <br style="clear: both;"/>
