@@ -4,18 +4,7 @@ angular.module('GameOfLife')
 
 .controller('gameoflife', function($scope) {
     $scope.controller_loaded = 'GameOfLife loaded!';
-
     $scope.board_size = 5;
-    /*    $scope.original_game_board = _(0).range($scope.board_size)
-            .map(function() {
-                return _(0).range($scope.board_size)
-                    .map(function() {
-                        return Math.random() < 0.3 ? 1 : 0;
-                    });
-            });
-        $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));*/
-
-
 
     $scope.build_board = function(board_size) {
        $scope.board_size = board_size;
