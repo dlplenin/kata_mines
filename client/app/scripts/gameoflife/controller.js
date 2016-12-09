@@ -5,7 +5,7 @@ angular.module('GameOfLife')
 .controller('gameoflife', function($scope) {
   $scope.controller_loaded = 'GameOfLife loaded!';
   $scope.board_size = 5;
-  
+
   $scope.build_board = function(board_size) {
     $scope.board_size = board_size;
     $scope.original_game_board = _(0).range($scope.board_size)
@@ -18,20 +18,91 @@ angular.module('GameOfLife')
     $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
   };
 
-
-
   $scope.build_board_pattern = function(option) {
-    $scope.board_size = 5;
-    $scope.original_game_board = [
-      [0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0],
-      [0, 0, 1, 0, 0],
-      [0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0]
-    ];
-    $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
-  };
 
+    if (option === 'blinker') {
+      $scope.original_game_board = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0]
+      ];
+      $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
+    }
+
+    if (option === 'toad') {
+      $scope.original_game_board = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 0],
+        [0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+      ];
+      $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
+    }
+
+    if (option === 'beacon') {
+      $scope.original_game_board = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 0, 0, 0],
+        [0, 1, 1, 0, 0, 0],
+        [0, 0, 0, 1, 1, 0],
+        [0, 0, 0, 1, 1, 0],
+        [0, 0, 0, 0, 0, 0]
+      ];
+      $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
+    }
+
+    if (option === 'pulsar') {
+      $scope.original_game_board = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0 ,0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 ,0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 ,0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 ,0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0 ,0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 ,0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 ,0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],        
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0],        
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0, 0]        
+      ];
+      $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
+    }
+
+    if (option === 'pentadecathlon') {
+      $scope.original_game_board = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],        
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ];
+      $scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
+    }
+    
+  };
 
   $scope.run_next_generation = function() {
     _($scope.original_game_board).each(function(element, index, row) {
@@ -43,15 +114,7 @@ angular.module('GameOfLife')
     $scope.original_game_board = JSON.parse(JSON.stringify($scope.game_board));
   };
 
-
   $scope.calculate_next_generation = function(row_index, col_index) {
-    //$scope.game_board = _($scope.original_game_board).clone();
-
-    //$scope.game_board = JSON.parse(JSON.stringify($scope.original_game_board));
-
-    //console.log(row_index, col_index);
-
-
     var temp_value_current_cell = $scope.original_game_board[row_index][col_index];
     $scope.original_game_board[row_index][col_index] = 0;
 

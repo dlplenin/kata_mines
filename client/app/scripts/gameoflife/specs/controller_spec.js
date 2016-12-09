@@ -70,7 +70,7 @@ describe('Controller: gameoflife', function() {
   });
 
   describe('When user clic Nex Generation button', function() {
-    
+
     it('Should Any live cell with fewer than two live neighbours dies, as if caused by under-population.', function() {
       scope.original_game_board = [
         [0, 1, 0],
@@ -159,11 +159,21 @@ describe('Controller: gameoflife', function() {
         [0, 0, 1, 0, 0],
         [0, 0, 0, 0, 0]
       ];
-scope.game_board = JSON.parse(JSON.stringify(scope.original_game_board));
+      scope.game_board = JSON.parse(JSON.stringify(scope.original_game_board));
       scope.calculate_next_generation(2, 1);
       expect(scope.game_board[2][1]).toBe(1);
 
     });
 
   });
+
+  describe('When user choose a pattern option', function() {
+    it('Should build a board with blinker pattern', function() {
+      scope.build_board_pattern('blinker');
+      expect(scope.game_board[1][2]).toBe(1);
+      scope.run_next_generation();
+      expect(scope.game_board[1][2]).toBe(0);
+    });
+  });
+   
 });
